@@ -1,0 +1,23 @@
+version: '2.2'
+services:
+  web:
+    image: explabs/vsfi-pixel-battle-web
+    container_name: web
+    ports:
+      - 80:80
+  api:
+    image: explabs/vsfi-pixel-battle-api
+    # container_name: api
+    ports:
+      - "5000-5004:5000"
+    scale: 5
+
+  redis:
+    image: redis:6.2-alpine
+    restart: always
+    volumes:
+      - cache:/data
+
+volumes:
+  cache:
+    driver: local
