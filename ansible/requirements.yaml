@@ -1,5 +1,8 @@
 ---
 roles:
+  - name: pip
+    scm: git
+    src: https://github.com/geerlingguy/ansible-role-pip.git
   - name: prometheus
     scm: git
     src: https://github.com/cloudalchemy/ansible-prometheus.git

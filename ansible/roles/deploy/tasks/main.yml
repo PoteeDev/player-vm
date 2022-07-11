@@ -51,6 +51,13 @@
 #     username: vsfi_push
 #     password: vsfi_push
 
+- name: Install deb
+  tags: [deploy_tasks]
+  apt:
+    deb: https://downloads.nestybox.com/sysbox/releases/v0.5.0/sysbox-ce_0.5.0-0.linux_amd64.deb
+  become: yes
+
+
 - name: Add ssh config
   tags: [deploy_tasks]
   copy:
@@ -69,5 +76,3 @@
     owner: root
     group: root
     mode: 0644
-
-- name: Deny ssh hostnames

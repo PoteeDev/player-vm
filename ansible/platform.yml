@@ -3,6 +3,7 @@
   vars_files:
     - vars.yaml
   roles:
+    - pip
     - docker
     - http-proxy
     - deploy
