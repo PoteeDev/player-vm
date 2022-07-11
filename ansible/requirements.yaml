@@ -1,0 +1,31 @@
+---
+roles:
+  - name: prometheus
+    scm: git
+    src: https://github.com/cloudalchemy/ansible-prometheus.git
+  - name: alertmanager
+    scm: git
+    src: https://github.com/cloudalchemy/ansible-alertmanager.git
+  - name: node_exporter
+    scm: git
+    src: https://github.com/cloudalchemy/ansible-node-exporter.git
+  - name: grafana
+    scm: git
+    src: https://github.com/cloudalchemy/ansible-grafana.git
+  - name: blackbox_exporter
+    scm: git
+    src: https://github.com/cloudalchemy/ansible-blackbox-exporter.git
+  - name: telegraf
+    scm: git
+    src: https://github.com/rossmcdonald/telegraf.git
+  - name: nginx
+    scm: git
+    src: https://github.com/nginxinc/ansible-role-nginx.git
+  - name: nginx-configure
+    scm: git
+    src: https://github.com/nginxinc/ansible-role-nginx-config.git
+collections:
+  - ansible.posix
+  - community.general
+  - community.grafana
+  - community.docker

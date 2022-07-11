@@ -1,0 +1,16 @@
+#!/bin/sh
+
+TAG="latest"
+
+/usr/bin/docker run -ti --rm \
+    --runtime=sysbox-runc \
+    --log-driver=journald \
+    --log-opt tag=$(whoami) \
+    --hostname=$(whoami) \
+    {% if item.http_port %}
+    -l traefik.enable=true \
+    -l traefik.http.services.{{item.name}}.loadbalancer.server.port={{item.http_port}} \
+    -l traefik.http.routers.{{item.name}}.rule=Host\(\`{{item.name}}.{{domain}}\`\) \
+    {% endif %}
+    explabs/ubuntu-dind:${TAG} \
+    /bin/bash 2>/dev/null 

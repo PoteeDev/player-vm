@@ -1,0 +1,5 @@
+challenges:
+  - name: test
+    password: "1234"
+    salt: "qweqweqwe"
+    http_port: 80

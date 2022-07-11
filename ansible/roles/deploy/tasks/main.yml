@@ -1,0 +1,73 @@
+- name: Install required packages
+  tags: [deploy_tasks]
+  package:
+    update_cache: "yes"
+    name:
+      - bc
+      - python3-passlib
+      - python-passlib
+
+- name: Create task users
+  tags: [deploy_tasks]
+  user:
+    name: "{{ item.name }}"
+    password: "{{ item.password | password_hash('sha512', item.salt) }}"
+    shell: "/usr/local/bin/{{ item.name }}sh"
+    groups: docker
+    create_home: yes
+  with_items: "{{ challenges }}"
+
+- name: Add custom shell
+  tags: [deploy_tasks]
+  lineinfile:
+    path: /etc/shells
+    line: "/usr/local/bin/{{ item.name }}sh"
+  with_items: "{{ challenges }}"
+
+- name: Upload custom shell
+  tags: [deploy_tasks]
+  template:
+    src: dockersh.j2
+    dest: "/usr/local/bin/{{ item.name }}sh"
+    owner: root
+    group: root
+    mode: 0755
+  with_items: "{{ challenges }}"
+
+# - name: Upload docker config
+#   tags: [deploy_tasks]
+#   notify: restart docker
+#   template:
+#     src: daemon.json.j2
+#     dest: /etc/docker/daemon.json
+#     owner: root
+#     group: root
+#     mode: 0755
+
+# - name: Login to docker
+#   tags: [deploy_tasks]
+#   docker_login:
+#     registry_url: "{{ registry_url }}"
+#     username: vsfi_push
+#     password: vsfi_push
+
+- name: Add ssh config
+  tags: [deploy_tasks]
+  copy:
+    src : ssh_config
+    dest: /etc/ssh/ssh_config
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Upload sshd config
+  tags: [deploy_tasks]
+  notify: restart sshd
+  copy:
+    src: sshd_config
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Deny ssh hostnames
