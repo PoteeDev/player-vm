@@ -51,7 +51,7 @@
 #     username: vsfi_push
 #     password: vsfi_push
 
-- name: Install deb
+- name: Install sysbox deb
   tags: [deploy_tasks]
   apt:
     deb: https://downloads.nestybox.com/sysbox/releases/v0.5.0/sysbox-ce_0.5.0-0.linux_amd64.deb
