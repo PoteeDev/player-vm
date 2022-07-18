@@ -1,5 +1,13 @@
+ifname: enp0s8
 challenges:
   - name: test
     password: "1234"
     salt: "qweqweqwe"
     http_port: 80
+    ip: 192.168.56.11
+
+  - name: test
+    password: "1234"
+    salt: "qweqweqwe"
+    http_port: 80
+    ip: 192.168.56.12

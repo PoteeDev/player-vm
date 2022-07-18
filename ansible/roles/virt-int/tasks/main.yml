@@ -1,0 +1,12 @@
+- name: Install net-tools
+  tags: [network]
+  package:
+    name:
+      - net-tools
+
+- name: Create virtual interfaces
+  tags: [network]
+  ansible.builtin.shell: "ifconfig {{ ifname }}:{{ index + 1 }} {{ item.ip }} netmask 255.255.255.0 up"
+  loop: "{{ challenges }}"
+  loop_control:
+    index_var: index

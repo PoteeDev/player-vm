@@ -4,6 +4,7 @@
     - vars.yaml
   roles:
     - pip
+    - virt-int
     - docker
     - http-proxy
     - deploy
