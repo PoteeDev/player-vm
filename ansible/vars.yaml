@@ -1,4 +1,5 @@
 ifname: enp0s8
+compose_path: ../infrastructure/
 challenges:
   - name: test
     password: "1234"

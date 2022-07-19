@@ -1,8 +1,11 @@
 ---
 roles:
-  - name: pip
+  - name: docker
     scm: git
-    src: https://github.com/geerlingguy/ansible-role-pip.git
+    src: https://github.com/geerlingguy/ansible-role-docker.git
+  # - name: pip
+  #   scm: git
+  #   src: https://github.com/geerlingguy/ansible-role-pip.git
   - name: prometheus
     scm: git
     src: https://github.com/cloudalchemy/ansible-prometheus.git
@@ -32,3 +35,4 @@ collections:
   - community.general
   - community.grafana
   - community.docker
+  - community.docker.docker_compose
